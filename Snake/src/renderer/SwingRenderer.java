@@ -16,17 +16,14 @@ public class SwingRenderer extends JFrame implements MouseListener, KeyListener
 {
     GameBoard gameBoard;
 
-    public JLabel statsLabel = new JLabel("Статистики:", SwingConstants.HORIZONTAL);
-    public JLabel scoreLabel = new JLabel("Точки:   ");
-    public JLabel foodLabel = new JLabel("Изядена храна:   ");
+    private JLabel statsLabel = new JLabel("Статистики:", SwingConstants.HORIZONTAL);
+    private JLabel scoreLabel = new JLabel("Точки:   ");
+    private JLabel foodLabel = new JLabel("Изядена храна:   ");
 
     public static JLabel scorePointsLabel = new JLabel("0");
     public static JLabel foodScoreLabel = new JLabel("0");
 
     public static JLabel gameOverLabel = new JLabel();
-    // public static JLabel highScoresLabel = new JLabel("");
-
-    public static JTextArea textArea = new JTextArea("");
 
     public SwingRenderer()
     {
@@ -58,18 +55,6 @@ public class SwingRenderer extends JFrame implements MouseListener, KeyListener
 
         c.fill = GridBagConstraints.BOTH;
 
-        c.gridy = 1;
-
-        tilesPanel.add(gameOverLabel, c);
-
-        c.gridy = 2;
-
-        c.gridy = 3;
-
-        tilesPanel.add(textArea, c);
-
-        c.gridy = 0;
-
         tilesPanel.addMouseListener(this);
 
         c.insets = new Insets(10, 0, 10, 10);
@@ -91,12 +76,12 @@ public class SwingRenderer extends JFrame implements MouseListener, KeyListener
 
         statsLabel.setPreferredSize(new Dimension(300, 30));
 
-        JLabel control_title = new JLabel("Контроли: ", SwingConstants.HORIZONTAL);
+        JLabel controlTitleLabel = new JLabel("Контроли: ", SwingConstants.CENTER);
 
-        JLabel moveUp = new JLabel("За придвижване нагоре:     ↑ / W / Щракнете с мишката над главата на змията");
-        JLabel moveDown = new JLabel("За придвижване надолу:     ↓ / S / Щракнете с мишката под главата на змията");
-        JLabel moveLeft = new JLabel("За придвижване наляво:     ← / A / Щракнете с мишката наляво от главата на змията");
-        JLabel moveRight = new JLabel("За придвижване надясно:     → / D / Щракнете с мишката надясно от главата на змията");
+        JLabel moveUpLabel = new JLabel("За придвижване нагоре:     ↑ / W / Щракнете с мишката над главата на змията");
+        JLabel moveDownLabel = new JLabel("За придвижване надолу:     ↓ / S / Щракнете с мишката под главата на змията");
+        JLabel moveLeftLabel = new JLabel("За придвижване наляво:     ← / A / Щракнете с мишката наляво от главата на змията");
+        JLabel moveRightLabel = new JLabel("За придвижване надясно:     → / D / Щракнете с мишката надясно от главата на змията");
 
         c.insets = new Insets(0, 0, 0, 0);
 
@@ -124,29 +109,32 @@ public class SwingRenderer extends JFrame implements MouseListener, KeyListener
 
         c.gridy = 3;
 
-        labelsPanel.add(control_title, c);
+        labelsPanel.add(controlTitleLabel, c);
 
         c.insets = new Insets(0, 0, 0, 0);
 
         c.gridy = 4;
 
-        labelsPanel.add(moveUp, c);
+        labelsPanel.add(moveUpLabel, c);
 
         c.gridy = 5;
 
-        labelsPanel.add(moveDown, c);
+        labelsPanel.add(moveDownLabel, c);
 
         c.gridy = 6;
 
-        labelsPanel.add(moveLeft, c);
+        labelsPanel.add(moveLeftLabel, c);
 
         c.gridy = 7;
 
-        labelsPanel.add(moveRight, c);
+        labelsPanel.add(moveRightLabel, c);
 
-        textArea.setVisible(false);
-        textArea.setEditable(false);
-        textArea.setOpaque(false);
+        c.insets = new Insets(150, 210, 0, 0);
+
+        c.gridy = 8;
+
+        gameOverLabel.setForeground(Color.RED);
+        labelsPanel.add(gameOverLabel, c);
 
         scorePointsLabel.setForeground(Color.RED);
         foodScoreLabel.setForeground(Color.RED);

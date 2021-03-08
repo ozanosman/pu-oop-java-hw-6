@@ -4,10 +4,10 @@ import java.awt.*;
 
 public class Tile
 {
-    int TILE_SIZE = 20;
-    int ROWS = 30;
-    int COLS = 30;
-    int GAME_PANEL_SIZE = 600;
+    protected int TILE_SIZE = 20;
+    protected int ROWS = 30;
+    protected int COLS = 30;
+    protected int GAME_PANEL_SIZE = 600;
 
     public void renderTile(Graphics g)
     {

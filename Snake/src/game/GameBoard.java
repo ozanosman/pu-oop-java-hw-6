@@ -19,12 +19,13 @@ public class GameBoard implements ActionListener
     public static int y[] = new int[400];
 
     public static boolean inGame = true;
-    public static boolean executed = false;
 
-    Timer timer = new Timer(350, this);
+    private static boolean executed = false;
 
-    public static int FOOD_EATEN;
-    public static int SCORE_POINTS;
+    private Timer timer = new Timer(350, this);
+
+    private static int FOOD_EATEN;
+    private static int SCORE_POINTS;
 
     public static boolean moveLeft = false;
     public static boolean moveRight = true;
@@ -47,6 +48,7 @@ public class GameBoard implements ActionListener
             this.eatFood();
             this.bodyCollision();
             this.wallCollision();
+            this.gameWon();
             this.renderer.repaint();
             timer.start();
         }
@@ -61,7 +63,7 @@ public class GameBoard implements ActionListener
         this.renderer.requestFocus();
     }
 
-    public void startGame()
+    private void startGame()
     {
         Snake.snakeParts = 4;
 
@@ -69,7 +71,7 @@ public class GameBoard implements ActionListener
         this.randomFood();
     }
 
-    public void randomFood()
+    private void randomFood()
     {
         ArrayList<Integer> foodCoordinatesX = new ArrayList<>();
         ArrayList<Integer> foodCoordinatesY = new ArrayList<>();
@@ -90,7 +92,7 @@ public class GameBoard implements ActionListener
         Food.positionY = foodCoordinatesY.get(0);
     }
 
-    public void createSnake()
+    private void createSnake()
     {
         for (int i = 1; i <= Snake.snakeParts; i++)
         {
@@ -118,26 +120,26 @@ public class GameBoard implements ActionListener
         }
     }
 
-    public void bodyCollision()
+    private void bodyCollision()
     {
         for (int i = 1; i < Snake.snakeParts; i++)
         {
             if (x[0] == x[i] && y[0] == y[i])
             {
-                gameOver();
+                gameLost();
             }
         }
     }
 
-    public void wallCollision()
+    private void wallCollision()
     {
         if (x[0] >= 600 || x[0] < 0 || y[0] >= 600 || y[0] < 0)
         {
-            gameOver();
+            gameLost();
         }
     }
 
-    public void eatFood()
+    private void eatFood()
     {
         if (x[0] == Food.positionX - 5 && y[0] == Food.positionY - 5)
         {
@@ -151,7 +153,7 @@ public class GameBoard implements ActionListener
         }
     }
 
-    public void move()
+    private void move()
     {
         for (int i = Snake.snakeParts; i > 0; i--)
         {
@@ -180,13 +182,12 @@ public class GameBoard implements ActionListener
         }
     }
 
-    public void resetGame()
+    private void resetGame()
     {
         timer.stop();
         inGame = true;
         executed = false;
         SwingRenderer.gameOverLabel.setText("");
-        SwingRenderer.textArea.setText("");
         FOOD_EATEN = 0;
         SCORE_POINTS = 0;
         SwingRenderer.foodScoreLabel.setText(String.valueOf(FOOD_EATEN));
@@ -194,14 +195,26 @@ public class GameBoard implements ActionListener
         startGame();
     }
 
-    public void gameOver()
+    private void gameWon()
+    {
+        if (SCORE_POINTS == 300)
+        {
+            Snake.size = 0;
+            Food.size = 0;
+            SwingRenderer.gameOverLabel.setText("Вие спечелихте!");
+            timer.stop();
+            inGame = false;
+            executed = true;
+        }
+    }
+
+    private void gameLost()
     {
         if (!executed)
         {
             Snake.size = 0;
             Food.size = 0;
-            SwingRenderer.gameOverLabel.setText("Game Over!");
-            SwingRenderer.textArea.setVisible(true);
+            SwingRenderer.gameOverLabel.setText("Вие загубихте!");
             timer.stop();
             inGame = false;
             executed = true;

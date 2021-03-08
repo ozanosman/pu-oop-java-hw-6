@@ -6,8 +6,8 @@ import java.awt.*;
 
 public class Snake
 {
-    public static int positionX;
-    public static int positionY;
+    protected static int positionX;
+    protected static int positionY;
     public static int size;
 
     public static int snakeParts;
