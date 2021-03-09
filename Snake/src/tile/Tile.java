@@ -2,6 +2,11 @@ package tile;
 
 import java.awt.*;
 
+/**
+ * Клас съдържащ метод за визуализиране на плочките като игрално поле.
+ *
+ * @author Озан Осман
+ */
 public class Tile
 {
     protected int TILE_SIZE = 20;
@@ -9,6 +14,11 @@ public class Tile
     protected int COLS = 30;
     protected int GAME_PANEL_SIZE = 600;
 
+    /**
+     * Метод визуализиращ плочките като игрално поле.
+     *
+     * @param g     обект на супер класа
+     */
     public void renderTile(Graphics g)
     {
         g.setColor(Color.BLACK);

@@ -12,6 +12,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Клас наследяващ JFrame, прилагащ MouseListener, KeyListener и съдържащ конструктор и методи за визуализиране на приложението.
+ *
+ * @author Озан Осман
+ */
 public class SwingRenderer extends JFrame implements MouseListener, KeyListener
 {
     GameBoard gameBoard;
@@ -25,6 +30,9 @@ public class SwingRenderer extends JFrame implements MouseListener, KeyListener
 
     public static JLabel gameOverLabel = new JLabel();
 
+    /**
+     * Конструктор съдържащ характеристиките за създаване на прозореца, в която се визуализира игралната дъска, бутоните и неговите елементи.
+     */
     public SwingRenderer()
     {
         this.setTitle("Snake");
@@ -157,6 +165,11 @@ public class SwingRenderer extends JFrame implements MouseListener, KeyListener
         addKeyListener(this);
     }
 
+    /**
+     * Метод, който сравнява позицията на змията и позицията на кликане на мишката и променя посоката на движение на змията.
+     *
+     * @param e     обект на супер класа
+     */
     @Override
     public void mouseClicked(MouseEvent e)
     {
@@ -235,6 +248,11 @@ public class SwingRenderer extends JFrame implements MouseListener, KeyListener
 
     }
 
+    /**
+     * Метод, който мърда змията на горе, долу, ляво и дясно с клавишите от клавиатурата.
+     *
+     * @param e     обект на супер класа
+     */
     @Override
     public void keyPressed(KeyEvent e)
     {

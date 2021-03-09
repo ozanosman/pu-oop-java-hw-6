@@ -4,6 +4,11 @@ import game.GameBoard;
 
 import java.awt.*;
 
+/**
+ * Клас съдържащ конструктор и метод за визуализиране на змията.
+ *
+ * @author Озан Осман
+ */
 public class Snake
 {
     protected static int positionX;
@@ -12,6 +17,13 @@ public class Snake
 
     public static int snakeParts;
 
+    /**
+     * Конструктор на елемента "Snake".
+     *
+     * @param positionX     позиция "X" на елемента
+     * @param positionY     позиция "Y" на елемента
+     * @param size      размер на елемента
+     */
     public Snake(int positionX, int positionY, int size)
     {
         this.positionX = positionX;
@@ -19,6 +31,11 @@ public class Snake
         this.size = size;
     }
 
+    /**
+     * Клас визуализиращ змията и неговото тяло.
+     *
+     * @param g     обект на супер класа
+     */
     public void renderSnake(Graphics g)
     {
         for (int i = 0; i < snakeParts; i++)
